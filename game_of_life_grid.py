@@ -1,4 +1,5 @@
 import time
+import gui
 
 class GameOfLifeGrid:
 
@@ -29,11 +30,11 @@ class GameOfLifeGrid:
                 neighbours = self.count_neighbours(self.grid, row, column)
                 pixel_state = GameOfLifeGrid.get_next_pixel_state(neighbours, pixel_state)
                 new_grid[row][column] = pixel_state 
+                
+        # print(f"\n<------ {self.generation_number} Generation ------>")
+        # self.print_grid()
 
-        print(f"\n<------ {self.generation_number} Generation ------>")
-        self.print_grid()
-
-        return new_grid 
+        self.grid = new_grid 
 
 
     def count_neighbours(self, universe, row, column):
@@ -122,7 +123,7 @@ class GameOfLifeGrid:
 
     def run_simulation(self):
         while(True):
-            self.grid = self.calculate_next_grid_epoch()
+            self.calculate_next_grid_epoch()
             time.sleep(0.2)
 
 
